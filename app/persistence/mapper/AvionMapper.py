@@ -8,7 +8,7 @@ def dto_a_entidad(dto: AvionDTO) -> Avion:
         modelo=dto.modelo,
         capacidad=dto.capacidad,
         aerolinea=dto.aerolinea,
-        estado=dto.estado.value,
+        estado=dto.estado,
         fecha_fabricacion=dto.fecha_fabricacion
     )
 
@@ -18,6 +18,6 @@ def entidad_a_dto(avion: Avion) -> AvionDTO:
         modelo=avion.modelo,
         capacidad=avion.capacidad,
         aerolinea=avion.aerolinea,
-        estado=EstadoEnum(avion.estado.value) if avion.estado else EstadoEnum.disponible,
+        estado=avion.estado if avion.estado else EstadoEnum.disponible,
         fecha_fabricacion=avion.fecha_fabricacion
     )

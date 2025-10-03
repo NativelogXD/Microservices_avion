@@ -73,9 +73,8 @@ def obtener_todos_aviones(
     - **skip**: Número de registros a omitir (paginación)
     - **limit**: Número máximo de registros a retornar
     """
-    # Nota: Necesitarías implementar un método getAll en el servicio
-    # Por ahora retornamos una lista vacía
-    return []
+    aviones = service.getAllAviones(skip, limit)
+    return [entidad_a_dto(avion) for avion in aviones]
 
 
 # Obtener aviones por estado

@@ -33,7 +33,9 @@ class AvionRepositoryImpl(AvionRepositorio):
         return self.db.query(Avion).filter(Avion.fecha_fabricacion == fecha_fabricacion).all()
 
     def getAvionByEstado(self, estado: str) -> List[Avion]:
-        return self.db.query(Avion).filter(Avion.estado == estado).all()
+        from app.domain.dto.avionDTO import EstadoEnum
+        estado_enum = EstadoEnum(estado)
+        return self.db.query(Avion).filter(Avion.estado == estado_enum).all()
 
     def getAvionByAerolinea(self, aerolinea: str) -> List[Avion]:
         return self.db.query(Avion).filter(Avion.aerolinea == aerolinea).all()
@@ -56,3 +58,6 @@ class AvionRepositoryImpl(AvionRepositorio):
         self.db.commit()
         self.db.refresh(avion)
         return avion
+    
+    def getAllAviones(self, skip: int, limit: int) -> List[Avion]:
+        return self.db.query(Avion).offset(skip).limit(limit).all()

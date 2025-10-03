@@ -38,3 +38,6 @@ class ServiceAvion:
 
     def edit(self, avion_id: int, avion_actualizado: Avion) -> Avion:
         return self.repo.edit(avion_id, avion_actualizado)
+    
+    def getAllAviones(self, skip: int, limit: int) -> List[Avion]:
+        return self.repo.getAllAviones(skip, limit)

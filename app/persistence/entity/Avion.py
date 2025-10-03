@@ -1,15 +1,10 @@
 # models.py
 from sqlalchemy import Column, Integer, String, Enum, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-import enum
 from datetime import datetime
+from app.domain.dto.avionDTO import EstadoEnum
 
 Base = declarative_base()
-
-class EstadoAvionEnum(str, enum.Enum):
-    disponible = "disponible"
-    mantenimiento = "mantenimiento"
-    fuera_de_servicio = "fuera_de_servicio"
 
 class Avion(Base):
     __tablename__ = "aviones"
@@ -18,5 +13,5 @@ class Avion(Base):
     modelo = Column(String, nullable=False)
     capacidad = Column(Integer, nullable=False)
     aerolinea = Column(String, nullable=False)
-    estado = Column(Enum(EstadoAvionEnum), default=EstadoAvionEnum.disponible)
+    estado = Column(Enum(EstadoEnum), default=EstadoEnum.disponible)
     fecha_fabricacion = Column(DateTime, nullable=True)
